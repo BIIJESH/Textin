@@ -1,0 +1,162 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+</head>
+
+<body class="bg-background font-Poppins">
+  <!-- NAVBAR -->
+  <nav class="p-4">
+    <main class="xxl:max-w-7xl mx-auto flex max-w-5xl flex-col items-center justify-between gap-8 py-4 sm:flex-row">
+      <div class="relative">
+        <div class="text-paragraph relative">
+          <span class="absolute inset-y-0 left-0 flex items-center pl-4">
+            <svg xmlns=http://www.w3.org/2000/svg class="h-5 w-5" viewBox="0 0 24 24">
+              <g fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9.767" cy="9.767" r="8.989" />
+                <line x1="16.018" x2="19.542" y1="16.485" y2="20" />
+              </g>
+            </svg>
+          </span>
+          <input type="search" id="search-box"
+            class="placeholder:text-paragraph bg-shade focus:ring-dark w-full rounded-xl py-2.5 pl-12 pr-4 text-base tracking-wider outline-none duration-300 focus:ring-1"
+            placeholder="Search.." />
+        </div>
+
+        <!-- hidden -->
+        <div id="search-results" class="bg-shade absolute z-10 mt-3 grid hidden w-full gap-3 rounded-xl p-3 shadow-xl">
+          <div class="text-paragraph flex w-full cursor-pointer items-center gap-4 rounded-xl bg-slate-800 px-4 py-3">
+            <div>
+              <h2 class="text-heading text-base font-medium tracking-wider">
+                #01. 00
+              </h2>
+            </div>
+            <div>
+              <h3 class="text-paragraph text-base font-medium tracking-wider">
+                Motivation
+              </h3>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-6">
+        <a href="{% url 'home' %}" class="text-red hover:text-primary text-base tracking-wider duration-300">
+          Retreat
+        </a>
+        <a href="{% url 'inventory' %}" class="hover:text-primary text-base tracking-wider text-white duration-300">
+          Inventory
+        </a>
+      </div>
+    </main>
+  </nav>
+  <!-- NAVBAR -->
+
+  <!-- HERO -->
+  <section class="mt-4 p-4 md:mt-8 w-fit">
+    <main
+      class="xxl:max-w-7xl bg-shade xxl:py-16 mx-auto grid max-w-5xl items-center rounded-3xl px-5 py-8 sm:px-8 sm:py-12 w-full h-full bg-[url('space.svg')] bg-cover bg-no-repeat bg-center">
+      <div class="mx-auto w-full max-w-3xl text-center">
+        <h2 class="xxl:text-3xl text-heading text-2xl font-semibold tracking-wider">
+          One Day.
+        </h2>
+        <h2 class="xxl:mt-4 xs:text-base text-paragraph mt-3 text-sm leading-loose tracking-wider">
+          One Day in life You will die <br> One Day in life You will fail <br> One Day in life You will suceed <br> But
+          One Day in life .. <br> One Day <br> One Day
+        </h2>
+      </div>
+    </main>
+  </section>
+  <!-- HERO -->
+
+  <!-- RECENT -->
+  <section class="xxl:mt-16 mt-4 p-4 md:mt-8">
+    <main class="xxl:max-w-7xl mx-auto grid max-w-5xl items-center">
+      <div class="mx-auto w-full max-w-3xl">
+        <h2 class="text-heading text-center text-xl font-medium tracking-wider">
+          Last Colloquy
+        </h2>
+
+        <div>
+
+
+{% if user.is_authenticated %}
+<div class="alert alert-success" role="alert">
+  <h3>Welcome {{ user.username }}</h3>
+  <a href="{% url 'logout' %}">Logout</a>
+</div>
+{% else %}
+<div class="alert alert-success" role="alert">
+  <h3>Welcome</h3>
+  <a href="{% url 'register' %}">Sign-up</a>
+  <a href="{% url 'login' %}">Login</a>
+</div>
+{% endif %}
+        </div>
+        <a href="{% url 'post' %}">
+          <div
+            class="bg-shade xs:p-6 mx-auto mt-8 max-w-xl scale-100 cursor-pointer rounded-3xl p-4 duration-500 hover:scale-105">
+            <div class="xs:gap-6 flex w-full flex-row items-center gap-4">
+              <div class="xs:w-32 xs:h-32 bg-pink flex h-20 w-20 items-center justify-center rounded-3xl text-center">
+                <h2 class="xs:text-2xl text-shade xs:tracking-wider xs:leading-relaxed text-lg font-semibold">
+                  00
+                  <hr class="border-shade border-t-2" />
+                  01
+                </h2>
+              </div>
+
+              <div class="flex w-full flex-1 flex-col sm:py-2">
+                <h6 class="text-cyan xs:text-base text-lg tracking-wider">
+                  Tag
+                </h6>
+                <h2 class="text-heading xs:text-xl mt-1 text-2xl font-medium">
+                  Title
+                </h2>
+                <h6 class="text-paragraph xs:block hidden text-base tracking-wide sm:mt-1">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Eius error aspernatur in.
+                </h6>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <a href="{% url 'inventory' %}">
+          <div class="mt-8 text-center">
+            <button type="submit"
+              class="bg-shade text-heading hover:text-shade inline-block w-full rounded-2xl px-6 py-4 text-base font-medium tracking-wider duration-500 hover:bg-white sm:w-auto">
+              Explore More
+            </button>
+          </div>
+      </div>
+      </a>
+    </main>
+  </section>
+  <!-- RECENT -->
+
+  <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+  <!-- optional js -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
